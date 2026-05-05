@@ -24,6 +24,7 @@ const team = [
     initials: 'RK',
     color: 'bg-brown-500',
   },
+  
 ]
 
 export function Team() {

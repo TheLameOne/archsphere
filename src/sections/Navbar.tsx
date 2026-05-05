@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-scroll'
 import { Menu, X } from 'lucide-react'
+import { Logo } from '@/components/SocialIcons'
 
 const navLinks = [
   { label: 'About',       to: 'about' },
@@ -38,15 +39,8 @@ export function Navbar() {
           <div className="flex items-center justify-between h-16 md:h-20">
 
             {/* Logo */}
-            <Link to="hero" smooth duration={800} className="flex items-center gap-2 group">
-              <div className="w-8 h-8 rounded-sm bg-brown-400 flex items-center justify-center">
-                <span className="text-cream-100 font-serif text-sm font-bold">A</span>
-              </div>
-              <span className={`font-serif text-xl font-semibold tracking-wide transition-colors duration-300 ${
-                scrolled ? 'text-dark-300' : 'text-cream-100'
-              }`}>
-                Archsphere
-              </span>
+            <Link to="hero" smooth duration={800} className="flex items-center group">
+              <Logo light={!scrolled} />
             </Link>
 
             {/* Desktop Links */}

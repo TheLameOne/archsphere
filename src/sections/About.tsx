@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { slideInLeft, slideInRight } from '@/components/SectionWrapper'
-import aboutImg from '@/assets/image2.png'
+import aboutImg from '@/assets/residential/interior/dfdd8db7-b18f-492f-88dc-181f300e3cf5.png'
 
 export function About() {
   return (
@@ -26,10 +26,10 @@ export function About() {
             {/* Decorative offset frame */}
             <div className="absolute -bottom-6 -right-6 w-2/3 h-1/2 border border-beige-200 rounded-sm -z-10" />
             {/* Year badge */}
-            <div className="absolute top-6 -right-4 md:-right-8 bg-brown-400 text-cream-100 px-4 py-5 text-center rounded-sm">
+            {/* <div className="absolute top-6 -right-4 md:-right-8 bg-brown-400 text-cream-100 px-4 py-5 text-center rounded-sm">
               <span className="font-serif text-2xl font-semibold block">12</span>
               <span className="label-text text-[9px] text-beige-100/80">Years</span>
-            </div>
+            </div> */}
           </motion.div>
 
           {/* Text side */}
@@ -50,7 +50,7 @@ export function About() {
             </h2>
 
             <p className="text-dark-200/70 leading-relaxed mb-5">
-              Founded in 2012, Archsphere began with a singular conviction: that great design
+              Archsphere began with a singular conviction: that great design
               is not a luxury but a necessity. Every space we create carries the weight of human
               experience — the warmth of a home, the ambition of a workplace, the memory of a place.
             </p>

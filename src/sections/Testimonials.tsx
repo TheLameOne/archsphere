@@ -42,48 +42,49 @@ export function Testimonials() {
   }
 
   return (
-    <section id="testimonials" className="py-24 md:py-32 bg-dark-300 overflow-hidden">
-      <div className="container-wide section-padding">
+    <section id="testimonials" className="py-24 md:py-32 bg-dark-300">
 
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
-        >
-          <div>
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-8 h-px bg-brown-400" />
-              <span className="label-text text-brown-400 text-[10px]">Client Words</span>
+        <div className="container-wide section-padding">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
+          >
+            <div>
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-8 h-px bg-brown-400" />
+                <span className="label-text text-brown-400 text-[10px]">Client Words</span>
+              </div>
+              <h2 className="heading-lg text-cream-100">
+                What They <span className="italic text-brown-300">Say</span>
+              </h2>
             </div>
-            <h2 className="heading-lg text-cream-100">
-              What They <span className="italic text-brown-300">Say</span>
-            </h2>
-          </div>
 
-          {/* Navigation */}
-          <div className="flex gap-3">
-            <button
-              onClick={() => scroll('left')}
-              className="w-11 h-11 rounded-sm border border-white/10 flex items-center justify-center text-beige-200/60 hover:bg-brown-400 hover:text-cream-100 hover:border-brown-400 transition-all"
-            >
-              <ChevronLeft size={18} />
-            </button>
-            <button
-              onClick={() => scroll('right')}
-              className="w-11 h-11 rounded-sm border border-white/10 flex items-center justify-center text-beige-200/60 hover:bg-brown-400 hover:text-cream-100 hover:border-brown-400 transition-all"
-            >
-              <ChevronRight size={18} />
-            </button>
-          </div>
-        </motion.div>
+            {/* Navigation */}
+            <div className="flex gap-3">
+              <button
+                onClick={() => scroll('left')}
+                className="w-11 h-11 rounded-sm border border-white/10 flex items-center justify-center text-beige-200/60 hover:bg-brown-400 hover:text-cream-100 hover:border-brown-400 transition-all"
+              >
+                <ChevronLeft size={18} />
+              </button>
+              <button
+                onClick={() => scroll('right')}
+                className="w-11 h-11 rounded-sm border border-white/10 flex items-center justify-center text-beige-200/60 hover:bg-brown-400 hover:text-cream-100 hover:border-brown-400 transition-all"
+              >
+                <ChevronRight size={18} />
+              </button>
+            </div>
+          </motion.div>
+        </div>
 
-        {/* Scroll Container */}
+        {/* Scroll Container — full-bleed so first/last cards aren't clipped */}
         <div
           ref={scrollRef}
-          className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide"
+          className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide px-6 md:px-12 lg:px-20 xl:px-28"
           style={{ scrollSnapType: 'x mandatory', msOverflowStyle: 'none', scrollbarWidth: 'none' }}
         >
           {testimonials.map((t, i) => (
@@ -93,7 +94,7 @@ export function Testimonials() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: i * 0.1 }}
-              className="flex-none w-80 md:w-96 p-7 rounded-sm border border-white/5 bg-white/3 hover:bg-white/5 transition-colors"
+              className="flex-none w-80 md:w-96 p-7 rounded-sm border border-white/5 bg-white/[0.03] hover:bg-white/[0.05] transition-colors"
               style={{ scrollSnapAlign: 'start' }}
             >
               <Quote size={24} className="text-brown-400/50 mb-5" />
@@ -113,7 +114,6 @@ export function Testimonials() {
           ))}
         </div>
 
-      </div>
     </section>
   )
 }

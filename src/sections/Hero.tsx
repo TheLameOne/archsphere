@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-scroll'
 import { ArrowDown } from 'lucide-react'
-import heroImg from '@/assets/image.png'
+import heroImg from '@/assets/residential/elevation/3d_render/Designer.png'
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)

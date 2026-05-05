@@ -8,17 +8,25 @@ export function CursorEffect() {
   const mouseX = useMotionValue(-100)
   const mouseY = useMotionValue(-100)
 
-  const springConfig = { damping: 28, stiffness: 300, mass: 0.5 }
+  const springConfig = { damping: 40, stiffness: 800, mass: 0.2 }
   const cursorX = useSpring(mouseX, springConfig)
   const cursorY = useSpring(mouseY, springConfig)
 
   const dotX = useMotionValue(-100)
   const dotY = useMotionValue(-100)
+  const hasInit = useRef(false)
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
-      mouseX.set(e.clientX - 20)
-      mouseY.set(e.clientY - 20)
+      const x = e.clientX - 20
+      const y = e.clientY - 20
+      if (!hasInit.current) {
+        cursorX.jump(x)
+        cursorY.jump(y)
+        hasInit.current = true
+      }
+      mouseX.set(x)
+      mouseY.set(y)
       dotX.set(e.clientX - 4)
       dotY.set(e.clientY - 4)
     }

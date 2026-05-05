@@ -30,3 +30,47 @@ export function Twitter({ size = 16, ...props }: IconProps) {
     </svg>
   )
 }
+
+// ─── Brand Logo ──────────────────────────────────────────────────────────────
+
+interface LogoProps {
+  /** true = cream (dark backgrounds)  |  false = dark (light backgrounds) */
+  light?: boolean
+  className?: string
+}
+
+export function Logo({ light = true, className = '' }: LogoProps) {
+  const c = light ? '#EAE3D5' : '#2A1F0E'
+
+  return (
+    <div className={`flex flex-col items-center select-none ${className}`}>
+      {/* House mark — two overlapping peaked outlines + door */}
+      <svg
+        viewBox="0 0 94 74"
+        fill="none"
+        stroke={c}
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="w-11 h-auto"
+        aria-hidden="true"
+      >
+        <polyline points="42,5 14,33 14,70 65,70 65,33 42,5" />
+        <polyline points="60,17 40,36 40,70 80,70 80,36 60,17" />
+        <rect x="36" y="51" width="15" height="19" />
+      </svg>
+      <p
+        style={{ color: c, letterSpacing: '0.32em' }}
+        className="font-sans font-light text-[11px] uppercase mt-[6px] leading-none"
+      >
+        ARCHSPHERE
+      </p>
+      <p
+        style={{ color: c, letterSpacing: '0.38em', opacity: 0.55 }}
+        className="font-sans font-light text-[6.5px] uppercase mt-[4px] leading-none"
+      >
+        ARCHITECTURE
+      </p>
+    </div>
+  )
+}

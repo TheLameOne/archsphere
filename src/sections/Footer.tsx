@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-scroll'
-import { Instagram, Linkedin, Twitter } from '@/components/SocialIcons'
+import { Instagram, Linkedin, Twitter, Logo } from '@/components/SocialIcons'
 
 const footerLinks = {
   'Studio': ['About Us', 'Our Process', 'Team', 'Careers'],
@@ -59,11 +59,8 @@ export function Footer() {
 
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 mb-5">
-              <div className="w-8 h-8 rounded-sm bg-brown-400 flex items-center justify-center">
-                <span className="text-cream-100 font-serif text-sm font-bold">A</span>
-              </div>
-              <span className="font-serif text-xl font-semibold text-cream-100">Archsphere</span>
+            <div className="mb-5">
+              <Logo light={true} className="items-start" />
             </div>
             <p className="text-beige-200/40 text-sm leading-relaxed max-w-xs mb-6">
               A premier architecture & interior design studio crafting spaces
