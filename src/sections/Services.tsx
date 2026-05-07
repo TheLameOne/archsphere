@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Home, Building2, Palette, Box, Map } from 'lucide-react'
+import { Home, Building2, Palette, Box, Map, Layers } from 'lucide-react'
 import { staggerContainer, staggerItem } from '@/components/SectionWrapper'
 
 const services = [
@@ -38,6 +38,14 @@ const services = [
       'Thoughtful master planning and landscape integration that balances density, greenery, and community-centered design.',
     accent: 'from-olive-400/10 to-beige-100/30',
   },
+  {
+    icon: Layers,
+    title: 'Specialised Services',
+    description:
+      'Comprehensive cost estimation, BOQ and BBS preparation, structural and MEP documentation, BIM modelling, and end-to-end PMC delivery — all tailored to your project\'s scope and specifications.',
+    accent: 'from-brown-600/10 to-beige-100/30'
+  },
+  
 ]
 
 export function Services() {

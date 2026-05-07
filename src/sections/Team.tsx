@@ -1,12 +1,12 @@
 ﻿import { motion } from 'framer-motion'
 import { staggerContainer, staggerItem } from '@/components/SectionWrapper'
-import teamPhoto1 from '@/assets/team/image1.webp'
-import teamPhoto2 from '@/assets/team/image2.jpeg'
-import teamPhoto3 from '@/assets/team/image3.jpeg'
+// import teamPhoto1 from '@/assets/team/image1.webp'
+// import teamPhoto2 from '@/assets/team/image2.jpeg'
+// import teamPhoto3 from '@/assets/team/image3.jpeg'
 
-// import teamPhoto1 from '@/assets/team/image11.png'
-// import teamPhoto2 from '@/assets/team/image21.png'
-// import teamPhoto3 from '@/assets/team/image31.png'
+import teamPhoto1 from '@/assets/team/image12.png'
+import teamPhoto2 from '@/assets/team/image22.jpeg'
+import teamPhoto3 from '@/assets/team/image32.png'
 
 const team: Array<{ name: string; role: string; bio: string; photo?: string; initials: string; color: string }> = [
   {

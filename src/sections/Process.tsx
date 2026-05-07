@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
 import { staggerContainer, staggerItem } from '@/components/SectionWrapper'
-import designImg  from '@/assets/residential/elevation/sketchup/1777196207170.png'
+// import designImg  from '@/assets/residential/elevation/sketchup/1777196207170.png'
 import developImg from '@/assets/residential/elevation/sketchup/SAVE_20260205_093545.jpg'
+
+import image4 from '@/assets/residential/elevation/sketchup/4th.jpeg'
 
 const steps: Array<{ number: string; title: string; description: string; image: string | null }> = [
   {
@@ -16,21 +18,21 @@ const steps: Array<{ number: string; title: string; description: string; image: 
     title: 'Design',
     description:
       'Concept sketches evolve into detailed plans. We explore materials, spatial relationships, and natural light — iterating until the design feels inevitable.',
-    image: designImg,
+    image: developImg,
   },
   {
     number: '03',
     title: 'Develop',
     description:
       'Technical drawings, structural coordination, and material specifications are resolved with precision. We ensure every detail is buildable and beautiful.',
-    image: developImg,
+    image: null,
   },
   {
     number: '04',
     title: 'Deliver',
     description:
       'On-site oversight and close collaboration with contractors bring the design to life. We stay involved until the final handover — ensuring zero compromise.',
-    image: null,
+    image: image4,
   },
 ]
 

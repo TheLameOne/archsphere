@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { slideInLeft, slideInRight } from '@/components/SectionWrapper'
-import aboutImg from '@/assets/residential/interior/dfdd8db7-b18f-492f-88dc-181f300e3cf5.png'
+import aboutImg from '@/assets/residential/elevation/3d_render/433b3a93-5d21-4a71-a0f7-ccadb6c8b0ac(1).png'
 
 export function About() {
   return (
@@ -20,7 +20,7 @@ export function About() {
               <img
                 src={aboutImg}
                 alt="Archsphere design philosophy"
-                className="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-700"
+                className="w-full h-full object-cover object-right scale-105 hover:scale-100 transition-transform duration-700"
               />
             </div>
             {/* Decorative offset frame */}

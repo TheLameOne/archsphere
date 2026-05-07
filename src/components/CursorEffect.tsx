@@ -5,15 +5,15 @@ export function CursorEffect() {
   const cursorRef = useRef<HTMLDivElement>(null)
   const dotRef    = useRef<HTMLDivElement>(null)
 
-  const mouseX = useMotionValue(-100)
-  const mouseY = useMotionValue(-100)
+  const mouseX = useMotionValue(-10)
+  const mouseY = useMotionValue(-10)
 
-  const springConfig = { damping: 40, stiffness: 800, mass: 0.2 }
+  const springConfig = { damping: 1, stiffness: 100, mass: 0.001 }
   const cursorX = useSpring(mouseX, springConfig)
   const cursorY = useSpring(mouseY, springConfig)
 
-  const dotX = useMotionValue(-100)
-  const dotY = useMotionValue(-100)
+  const dotX = useMotionValue(-10)
+  const dotY = useMotionValue(-10)
   const hasInit = useRef(false)
 
   useEffect(() => {
@@ -54,11 +54,11 @@ export function CursorEffect() {
   return (
     <>
       {/* Cursor ring */}
-      <motion.div
+      {/* <motion.div
         ref={cursorRef}
         className="fixed top-0 left-0 w-10 h-10 rounded-full border border-brown-400/60 pointer-events-none z-[9999] transition-[transform,background-color,border-color] duration-200"
         style={{ x: cursorX, y: cursorY }}
-      />
+      /> */}
       {/* Cursor dot */}
       <motion.div
         ref={dotRef}
