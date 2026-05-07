@@ -109,7 +109,7 @@ export function Footer() {
             © {new Date().getFullYear()} Archsphere Studio. All rights reserved.
           </p>
           <p className="text-beige-200/25 text-xs">
-            Designing Spaces That Transcend
+            Transforming Spaces — Building Dreams
           </p>
         </div>
       </div>

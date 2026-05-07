@@ -123,8 +123,7 @@ export function Portfolio() {
                   <ZoomIn size={14} className="text-cream-100" />
                 </div>
                 <div className="absolute bottom-0 inset-x-0 p-5 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-400">
-                  <p className="label-text text-beige-200/70 text-[10px] mb-1">{p.category} · {p.year}</p>
-                  <h3 className="font-serif text-lg text-cream-100">{p.title}</h3>
+                  <p className="label-text text-beige-200/70 text-[10px]">{p.category} · {p.year}</p>
                 </div>
               </motion.div>
             ))}
@@ -159,10 +158,9 @@ export function Portfolio() {
                 className="w-full object-contain max-h-[80vh]"
               />
               <div className="absolute bottom-0 inset-x-0 p-5 bg-gradient-to-t from-dark-300/95 to-transparent">
-                <p className="label-text text-beige-200/60 text-[10px] mb-1">
+                <p className="label-text text-beige-200/60 text-[10px]">
                   {projects[selected].category} · {projects[selected].year}
                 </p>
-                <h3 className="font-serif text-xl text-cream-100">{projects[selected].title}</h3>
               </div>
               <button
                 onClick={() => setSelected(null)}

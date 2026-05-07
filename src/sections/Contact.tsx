@@ -4,9 +4,9 @@ import { Mail, Phone, MapPin, Send } from 'lucide-react'
 import { SectionWrapper } from '@/components/SectionWrapper'
 
 const contactInfo = [
-  { icon: Mail,    label: 'Email',    value: 'hello@archsphere.in' },
-  { icon: Phone,   label: 'Phone',   value: '+91 98765 43210' },
-  { icon: MapPin,  label: 'Studio',  value: 'New Delhi, India' },
+  { icon: Mail,    label: 'Email',    value: 'connect@archsphere.co.in' },
+  { icon: Phone,   label: 'Phone',   value: '+91 75675 96963' },
+  { icon: MapPin,  label: 'Studio',  value: 'Ahmedabad, India' },
 ]
 
 export function Contact() {
@@ -23,7 +23,7 @@ export function Contact() {
     const body    = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nService: ${form.service}\n\nMessage:\n${form.message}`
     )
-    window.location.href = `mailto:hello@archsphere.in?subject=${subject}&body=${body}`
+    window.location.href = `mailto:connect@archsphere.co.in?subject=${subject}&body=${body}`
     setSubmitted(true)
   }
 
@@ -134,11 +134,13 @@ export function Contact() {
                       className="w-full px-4 py-3 bg-cream-100 border border-beige-200 rounded-sm text-dark-300 text-sm focus:outline-none focus:border-brown-400 transition-colors appearance-none"
                     >
                       <option value="">Select a service</option>
-                      <option>Residential Architecture</option>
-                      <option>Commercial Architecture</option>
-                      <option>Interior Design</option>
-                      <option>3D Visualization</option>
-                      <option>Urban Planning</option>
+                      <option>Interior – 3D Render</option>
+                      <option>Interior – Walk-through</option>
+                      <option>Interior – Turn Key Projects</option>
+                      <option>PMC (Project Management Consultancy)</option>
+                      <option>Civil Construction Works</option>
+                      <option>Costing & Estimation</option>
+                      <option>Structural & MEP Design</option>
                     </select>
                   </div>
                 </div>

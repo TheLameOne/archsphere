@@ -1,5 +1,6 @@
 // Lucide v1+ renamed some social icons – provide local SVG replacements
 import type { SVGProps } from 'react'
+import { cn } from '@/lib/utils'
 
 type IconProps = SVGProps<SVGSVGElement> & { size?: number }
 
@@ -43,7 +44,7 @@ export function Logo({ light = true, className = '' }: LogoProps) {
   const c = light ? '#EAE3D5' : '#2A1F0E'
 
   return (
-    <div className={`flex flex-col items-center select-none ${className}`}>
+    <div className={cn('flex flex-col items-center select-none', className)}>
       {/* House mark — two overlapping peaked outlines + door */}
       <svg
         viewBox="0 0 94 74"

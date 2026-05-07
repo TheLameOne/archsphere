@@ -84,23 +84,23 @@ export function Hero() {
           animate="visible"
           className="overflow-hidden"
         >
-          <div className="overflow-hidden mb-2">
+          <div className="overflow-visible pb-3 mb-2">
             <motion.h1 variants={word} className="heading-xl text-cream-100 block">
-              Designing
+              Transforming
             </motion.h1>
           </div>
-          <div className="overflow-hidden mb-2">
+          <div className="overflow-visible pb-3 mb-2">
             <motion.h1 variants={word} className="heading-xl text-cream-100 block">
-              Spaces That
+              Spaces,
             </motion.h1>
           </div>
-          <div className="overflow-hidden">
+          <div className="overflow-visible pb-3">
             <motion.h1
               variants={word}
               className="heading-xl block"
-              style={{ WebkitTextStroke: '1px rgba(212, 196, 176, 0.6)', color: 'transparent' }}
+              style={{ WebkitTextStroke: '2px rgba(212, 196, 176, 0.75)', color: 'rgba(212, 196, 176, 0.25)' }}
             >
-              Transcend
+              Building Dreams
             </motion.h1>
           </div>
         </motion.div>

@@ -16,10 +16,7 @@ const faqs = [
     q: 'What is your fee structure?',
     a: 'Our fees are structured as a percentage of the construction cost for full-service projects, or as a fixed fee for specific deliverables. We\'ll provide a transparent proposal after an initial consultation.',
   },
-  {
-    q: 'Can you work with clients outside India?',
-    a: 'Absolutely. We have delivered projects across the Middle East and Southeast Asia. We use digital collaboration tools and structured site visit schedules to manage remote projects efficiently.',
-  },
+
   {
     q: 'Do you provide 3D renderings before construction?',
     a: 'Yes — 3D visualization is part of our design process. We create photorealistic renders and, on larger projects, immersive walkthroughs so you can experience the space before a single brick is placed.',

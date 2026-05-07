@@ -5,32 +5,33 @@ import { ChevronLeft, ChevronRight, Quote } from 'lucide-react'
 const testimonials = [
   {
     quote:
-      'Archsphere didn\'t just design our home — they distilled our life into space. Every corner speaks of us. The process was seamless, the result is extraordinary.',
-    author: 'Neha & Vikram Sharma',
-    role: 'Residential Client, Delhi',
+      'We had a tight budget and weren\'t sure what was possible. The team heard us out and gave us a plan that actually worked. Our home looks nothing like what we thought we could afford.',
+    author: 'Priya & Suresh Kumar',
+    role: 'Homeowner, Gandhinagar',
     rating: 5,
   },
   {
     quote:
-      'Our new office has transformed how our team collaborates. The space feels alive, purposeful, and completely aligned with our brand identity. An exceptional team.',
-    author: 'Anjali Desai',
-    role: 'CEO, Luminos Ventures',
+      'Honestly I was a bit nervous handing over the whole interior to someone else, but they kept checking in with us at every step. The final result felt very "us". Really happy we went with them.',
+    author: 'Karan Mehta',
+    role: 'First-time homeowner, Bopal',
     rating: 5,
   },
   {
     quote:
-      'The 3D visualizations Archsphere produced were indistinguishable from photographs. It allowed our investors to fall in love with the project long before construction began.',
-    author: 'Raj Malhotra',
-    role: 'Real Estate Developer',
+      'Got the 3D render done before finalising the layout. Saved us from a mistake we would have regretted. The visualisation was so clear my wife and I finally agreed on the kitchen!',
+    author: 'Deepak Yadav',
+    role: 'Client, Anand',
     rating: 5,
   },
   {
     quote:
-      'From the first sketch to the last detail of the fitout, the team was thorough, creative, and genuinely invested in getting it right. I\'d work with them on every project.',
-    author: 'Meera Nair',
-    role: 'Restaurant Owner, Mumbai',
+      'They handled everything from drawings to site supervision. I was working a full-time job and barely had time — they kept me updated over WhatsApp and nothing slipped through. Good experience overall.',
+    author: 'Sunita Rawat',
+    role: 'Client, Ahmedabad',
     rating: 5,
   },
+  
 ]
 
 export function Testimonials() {
