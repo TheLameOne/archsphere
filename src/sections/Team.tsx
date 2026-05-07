@@ -35,14 +35,14 @@ const team: Array<{ name: string; role: string; bio: string; photo?: string; ini
   },
   {
     name: 'Hardik Mori',
-    role: '',
+    role: 'BILLING ENGINEER',
     bio: 'Verify and certify bills; develop the Bar Bending Schedule (BBS) for the project; cross-check site execution measurements and raise bills based on verified quantities.',
     initials: 'HM',
     color: 'bg-brown-400',
   },
   {
     name: 'Raj Vachheta',
-    role: '',
+    role: 'PROJECT PLANNER',
     bio: 'Prepare and manage the project schedule in Microsoft Project (MSP); track and monitor progress to prevent delays and conflicts in construction activities.',
     initials: 'RV',
     color: 'bg-olive-300',
@@ -56,7 +56,7 @@ const team: Array<{ name: string; role: string; bio: string; photo?: string; ini
   },
   {
     name: 'Anjali Patel',
-    role: 'ARCHITECT (B.ARCH)',
+    role: 'ARCHITECT',
     bio: 'Develops design concepts, prepares and refines architectural drawings, executes technical detailing, and coordinates with consultants to maintain clarity, precision, and consistency across all project documents.',
     initials: 'AP',
     color: 'bg-brown-400',
