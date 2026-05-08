@@ -42,7 +42,7 @@ const services = [
     icon: Layers,
     title: 'Specialised Services',
     description:
-      'Comprehensive cost estimation, BOQ and BBS preparation, structural and MEP documentation, BIM modelling, and end-to-end PMC delivery — all tailored to your project\'s scope and specifications.',
+      'Comprehensive cost estimation, BOQ and BBS preparation, structural and MEP drawings, BIM modelling, and end-to-end PMC delivery — all tailored to your project\'s scope and specifications.',
     accent: 'from-brown-600/10 to-beige-100/30'
   },
   
