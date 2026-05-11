@@ -42,14 +42,21 @@ export function Footer() {
           <p className="text-beige-100/60 mb-7 text-sm">
             Start a conversation — the best projects begin with a single question.
           </p>
-          <Link
-            to="contact"
-            smooth
-            duration={800}
-            className="inline-block px-8 py-3.5 bg-cream-100 text-brown-500 label-text rounded-sm hover:bg-beige-200 transition-colors"
+          <motion.div
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+            className="inline-block"
           >
-            Start a Project
-          </Link>
+            <Link
+              to="contact"
+              smooth
+              duration={800}
+              className="inline-block px-8 py-3.5 bg-cream-100 text-brown-500 label-text rounded-sm hover:bg-beige-200 transition-colors"
+            >
+              Start a Project
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
 
@@ -68,13 +75,15 @@ export function Footer() {
             </p>
             <div className="flex gap-3">
               {[Instagram, Linkedin, Twitter].map((Icon, i) => (
-                <a
+                <motion.a
                   key={i}
                   href="#"
-                  className="w-9 h-9 rounded-sm border border-white/10 flex items-center justify-center text-beige-200/50 hover:bg-brown-400 hover:text-cream-100 hover:border-brown-400 transition-all"
+                  whileHover={{ y: -4, scale: 1.05 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                  className="w-9 h-9 rounded-sm border border-white/10 flex items-center justify-center text-beige-200/50 hover:bg-brown-400 hover:text-cream-100 hover:border-brown-400 transition-colors duration-300"
                 >
                   <Icon size={14} />
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>

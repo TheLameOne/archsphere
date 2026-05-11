@@ -1,5 +1,5 @@
-import { useRef } from 'react'
-import { motion } from 'framer-motion'
+import { useRef, useEffect, useState } from 'react'
+import { motion, useMotionValue, animate } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react'
 
 const testimonials = [
@@ -35,11 +35,26 @@ const testimonials = [
 ]
 
 export function Testimonials() {
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const trackRef     = useRef<HTMLDivElement>(null)
+  const x            = useMotionValue(0)
+  const [dragWidth, setDragWidth] = useState(0)
+
+  useEffect(() => {
+    const compute = () => {
+      if (!trackRef.current || !containerRef.current) return
+      setDragWidth(trackRef.current.scrollWidth - containerRef.current.offsetWidth)
+    }
+    compute()
+    window.addEventListener('resize', compute)
+    return () => window.removeEventListener('resize', compute)
+  }, [])
 
   const scroll = (dir: 'left' | 'right') => {
-    if (!scrollRef.current) return
-    scrollRef.current.scrollBy({ left: dir === 'left' ? -380 : 380, behavior: 'smooth' })
+    const next = x.get() + (dir === 'left' ? 380 : -380)
+    animate(x, Math.max(-dragWidth, Math.min(0, next)), {
+      type: 'spring', stiffness: 300, damping: 35,
+    })
   }
 
   return (
@@ -82,37 +97,42 @@ export function Testimonials() {
           </motion.div>
         </div>
 
-        {/* Scroll Container — full-bleed so first/last cards aren't clipped */}
-        <div
-          ref={scrollRef}
-          className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide px-6 md:px-12 lg:px-20 xl:px-28"
-          style={{ scrollSnapType: 'x mandatory', msOverflowStyle: 'none', scrollbarWidth: 'none' }}
-        >
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: i * 0.1 }}
-              className="flex-none w-80 md:w-96 p-7 rounded-sm border border-white/5 bg-white/[0.03] hover:bg-white/[0.05] transition-colors"
-              style={{ scrollSnapAlign: 'start' }}
-            >
-              <Quote size={24} className="text-brown-400/50 mb-5" />
-              <p className="text-beige-100/70 text-sm leading-relaxed mb-6 italic">
-                "{t.quote}"
-              </p>
-              <div className="flex items-center gap-1 mb-3">
-                {Array.from({ length: t.rating }).map((_, j) => (
-                  <span key={j} className="text-brown-300 text-xs">★</span>
-                ))}
-              </div>
-              <div>
-                <p className="font-serif text-cream-100 font-medium">{t.author}</p>
-                <p className="label-text text-[10px] text-beige-200/40 mt-0.5">{t.role}</p>
-              </div>
-            </motion.div>
-          ))}
+        {/* Drag Carousel */}
+        <div ref={containerRef} className="overflow-hidden">
+          <motion.div
+            ref={trackRef}
+            drag="x"
+            dragConstraints={{ right: 0, left: -(dragWidth || 1) }}
+            dragElastic={0.08}
+            dragMomentum
+            style={{ x }}
+            className="flex gap-5 px-6 md:px-12 lg:px-20 xl:px-28 pb-4"
+          >
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: i * 0.1 }}
+                className="flex-none w-80 md:w-96 p-7 rounded-sm border border-white/5 bg-white/[0.03] hover:bg-white/[0.05] transition-colors"
+              >
+                <Quote size={24} className="text-brown-400/50 mb-5" />
+                <p className="text-beige-100/70 text-sm leading-relaxed mb-6 italic">
+                  "{t.quote}"
+                </p>
+                <div className="flex items-center gap-1 mb-3">
+                  {Array.from({ length: t.rating }).map((_, j) => (
+                    <span key={j} className="text-brown-300 text-xs">★</span>
+                  ))}
+                </div>
+                <div>
+                  <p className="font-serif text-cream-100 font-medium">{t.author}</p>
+                  <p className="label-text text-[10px] text-beige-200/40 mt-0.5">{t.role}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
 
     </section>

@@ -107,23 +107,57 @@ export function Portfolio() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, transition: { duration: 0.2 } }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
+                whileHover="hover"
                 className={`group relative overflow-hidden rounded-sm cursor-pointer ${
                   i === 0 ? 'sm:col-span-2 lg:col-span-1 lg:row-span-2' : ''
                 }`}
                 style={{ aspectRatio: i === 0 ? '3/4' : '4/3' }}
                 onClick={() => setSelected(projects.indexOf(p))}
               >
-                <img
+                <motion.img
                   src={p.img}
                   alt={p.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  variants={{ hover: { scale: 1.08 } }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-300/90 via-dark-300/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
-                <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream-100/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
+
+                {/* Gradient overlay */}
+                <motion.div
+                  variants={{ hover: { opacity: 1 } }}
+                  initial={{ opacity: 0 }}
+                  transition={{ duration: 0.35 }}
+                  className="absolute inset-0 bg-gradient-to-t from-dark-300/90 via-dark-300/20 to-transparent"
+                />
+
+                {/* Zoom icon */}
+                <motion.div
+                  variants={{ hover: { opacity: 1, y: 0 } }}
+                  initial={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream-100/20 backdrop-blur-sm flex items-center justify-center"
+                >
                   <ZoomIn size={14} className="text-cream-100" />
-                </div>
-                <div className="absolute bottom-0 inset-x-0 p-5 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-400">
-                  <p className="label-text text-beige-200/70 text-[10px]">{p.category}</p>
+                </motion.div>
+
+                {/* Text overlay */}
+                <div className="absolute bottom-0 inset-x-0 p-5">
+                  <motion.p
+                    variants={{ hover: { opacity: 1, y: 0 } }}
+                    initial={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    className="label-text text-beige-200/70 text-[10px]"
+                  >
+                    {p.category}
+                  </motion.p>
+                  <motion.h3
+                    variants={{ hover: { opacity: 1, y: 0 } }}
+                    initial={{ opacity: 0, y: 14 }}
+                    transition={{ duration: 0.35, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
+                    className="font-serif text-base text-cream-100 mt-0.5"
+                  >
+                    {p.title}
+                  </motion.h3>
                 </div>
               </motion.div>
             ))}

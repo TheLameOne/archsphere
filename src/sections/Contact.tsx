@@ -58,9 +58,13 @@ export function Contact() {
             <div className="space-y-6">
               {contactInfo.map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-sm bg-brown-400/10 border border-brown-400/20 flex items-center justify-center flex-none">
+                  <motion.div
+                    whileHover={{ scale: 1.08, backgroundColor: 'rgba(107,79,58,0.2)' }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                    className="w-10 h-10 rounded-sm bg-brown-400/10 border border-brown-400/20 flex items-center justify-center flex-none"
+                  >
                     <Icon size={15} className="text-brown-400" />
-                  </div>
+                  </motion.div>
                   <div>
                     <p className="label-text text-[10px] text-olive-300 mb-0.5">{label}</p>
                     <p className="text-dark-200 text-sm font-medium">{value}</p>
@@ -156,13 +160,16 @@ export function Contact() {
                     className="w-full px-4 py-3 bg-cream-100 border border-beige-200 rounded-sm text-dark-300 text-sm placeholder-beige-300 focus:outline-none focus:border-brown-400 transition-colors resize-none"
                   />
                 </div>
-                <button
+                <motion.button
                   type="submit"
-                  className="w-full md:w-auto px-10 py-3.5 bg-brown-400 hover:bg-brown-500 text-cream-100 label-text rounded-sm transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                  className="w-full md:w-auto px-10 py-3.5 bg-brown-400 hover:bg-brown-500 text-cream-100 label-text rounded-sm transition-colors duration-300 flex items-center justify-center gap-2"
                 >
                   Send Message
                   <Send size={13} />
-                </button>
+                </motion.button>
               </form>
             )}
           </motion.div>

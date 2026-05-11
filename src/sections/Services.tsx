@@ -1,8 +1,94 @@
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion'
 import { Home, Building2, Palette, Box, Map, Layers } from 'lucide-react'
 import { staggerContainer, staggerItem } from '@/components/SectionWrapper'
+import type { LucideIcon } from 'lucide-react'
 
-const services = [
+interface ServiceData {
+  icon: LucideIcon
+  title: string
+  description: string
+  accent: string
+}
+
+function ServiceCard({ svc, i }: { svc: ServiceData; i: number }) {
+  const ref      = useRef<HTMLDivElement>(null)
+  const rotateX  = useMotionValue(0)
+  const rotateY  = useMotionValue(0)
+  const spotX    = useMotionValue(50)
+  const spotY    = useMotionValue(50)
+
+  const springRotX = useSpring(rotateX, { damping: 25, stiffness: 200 })
+  const springRotY = useSpring(rotateY, { damping: 25, stiffness: 200 })
+
+  const spotlight = useMotionTemplate`radial-gradient(circle at ${spotX}% ${spotY}%, rgba(255,255,255,0.07) 0%, transparent 65%)`
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return
+    const rect = ref.current.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width
+    const y = (e.clientY - rect.top)  / rect.height
+    rotateX.set((0.5 - y) * 10)
+    rotateY.set((x - 0.5) * 10)
+    spotX.set(x * 100)
+    spotY.set(y * 100)
+  }
+
+  const handleMouseLeave = () => {
+    rotateX.set(0)
+    rotateY.set(0)
+  }
+
+  const Icon = svc.icon
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={staggerItem}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateX: springRotX,
+        rotateY: springRotY,
+        transformPerspective: 800,
+      }}
+      className={`group relative p-7 rounded-sm border border-white/5 bg-gradient-to-br ${svc.accent} hover:border-beige-200/20 transition-colors duration-500`}
+    >
+      {/* Spotlight overlay */}
+      <motion.div
+        className="absolute inset-0 rounded-sm pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{ background: spotlight }}
+      />
+
+      {/* Number */}
+      <span className="absolute top-6 right-6 font-serif text-4xl font-semibold text-white/5 group-hover:text-white/10 transition-colors">
+        {String(i + 1).padStart(2, '0')}
+      </span>
+
+      {/* Icon */}
+      <div className="w-11 h-11 rounded-sm bg-brown-400/20 border border-brown-400/30 flex items-center justify-center mb-6 group-hover:bg-brown-400/30 transition-colors">
+        <Icon size={18} className="text-brown-300" />
+      </div>
+
+      <h3 className="font-serif text-lg text-cream-100 mb-3 group-hover:text-beige-100 transition-colors">
+        {svc.title}
+      </h3>
+      <p className="text-beige-200/50 text-sm leading-relaxed group-hover:text-beige-200/70 transition-colors">
+        {svc.description}
+      </p>
+
+      {/* Bottom reveal line */}
+      <motion.div
+        className="absolute bottom-0 left-0 h-0.5 bg-brown-400/60 rounded-b-sm"
+        initial={{ width: 0 }}
+        whileHover={{ width: '100%' }}
+        transition={{ duration: 0.4 }}
+      />
+    </motion.div>
+  )
+}
+
+const services: ServiceData[] = [
   {
     icon: Home,
     title: 'Residential Architecture',
@@ -85,41 +171,9 @@ export function Services() {
           viewport={{ once: true, margin: '-60px' }}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
         >
-          {services.map((svc, i) => {
-            const Icon = svc.icon
-            return (
-              <motion.div
-                key={svc.title}
-                variants={staggerItem}
-                className={`group relative p-7 rounded-sm border border-white/5 bg-gradient-to-br ${svc.accent} hover:border-beige-200/20 transition-all duration-500 hover:-translate-y-1`}
-              >
-                {/* Number */}
-                <span className="absolute top-6 right-6 font-serif text-4xl font-semibold text-white/5 group-hover:text-white/10 transition-colors">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-
-                {/* Icon */}
-                <div className="w-11 h-11 rounded-sm bg-brown-400/20 border border-brown-400/30 flex items-center justify-center mb-6 group-hover:bg-brown-400/30 transition-colors">
-                  <Icon size={18} className="text-brown-300" />
-                </div>
-
-                <h3 className="font-serif text-lg text-cream-100 mb-3 group-hover:text-beige-100 transition-colors">
-                  {svc.title}
-                </h3>
-                <p className="text-beige-200/50 text-sm leading-relaxed group-hover:text-beige-200/70 transition-colors">
-                  {svc.description}
-                </p>
-
-                {/* Hover line */}
-                <motion.div
-                  className="absolute bottom-0 left-0 h-0.5 bg-brown-400/60 rounded-b-sm"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: '100%' }}
-                  transition={{ duration: 0.4 }}
-                />
-              </motion.div>
-            )
-          })}
+          {services.map((svc, i) => (
+            <ServiceCard key={svc.title} svc={svc} i={i} />
+          ))}
         </motion.div>
 
       </div>

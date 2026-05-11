@@ -64,3 +64,11 @@ export const slideInRight: Variants = {
     transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
   },
 }
+
+export const clipReveal: Variants = {
+  hidden: { clipPath: 'inset(0 100% 0 0)' },
+  visible: {
+    clipPath: 'inset(0 0% 0 0)',
+    transition: { duration: 1, ease: [0.22, 1, 0.36, 1] },
+  },
+}

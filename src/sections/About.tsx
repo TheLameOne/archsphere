@@ -1,10 +1,18 @@
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { slideInLeft, slideInRight } from '@/components/SectionWrapper'
 import aboutImg from '@/assets/residential/elevation/3d_render/433b3a93-5d21-4a71-a0f7-ccadb6c8b0ac(1).png'
 
 export function About() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  })
+  const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '-10%'])
+
   return (
-    <section id="about" className="py-24 md:py-32 bg-cream-100 overflow-hidden">
+    <section id="about" ref={sectionRef} className="py-24 md:py-32 bg-cream-100 overflow-hidden">
       <div className="container-wide section-padding">
         <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
 
@@ -17,10 +25,11 @@ export function About() {
             className="relative"
           >
             <div className="relative overflow-hidden rounded-sm aspect-[4/5]">
-              <img
+              <motion.img
                 src={aboutImg}
                 alt="Archsphere design philosophy"
-                className="w-full h-full object-cover object-right scale-105 hover:scale-100 transition-transform duration-700"
+                style={{ y: imgY }}
+                className="w-full h-full object-cover object-right scale-110"
               />
             </div>
             {/* Decorative offset frame */}

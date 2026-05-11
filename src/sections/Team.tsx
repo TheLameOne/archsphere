@@ -97,17 +97,34 @@ export function Team() {
             <motion.div
               key={member.name}
               variants={staggerItem}
+              whileHover="cardHover"
               className="group bg-cream-100 rounded-sm border border-beige-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-400"
             >
               {/* Avatar */}
               {member.photo && (
-              <div className="h-80 overflow-hidden bg-beige-200">
+              <div className="h-80 overflow-hidden bg-beige-200 relative">
                   <img
                     src={member.photo}
                     alt={member.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     style={{ objectPosition: 'center 10%' }}
                   />
+                  {/* Bio hover overlay */}
+                  <motion.div
+                    variants={{ cardHover: { opacity: 1 } }}
+                    initial={{ opacity: 0 }}
+                    transition={{ duration: 0.35 }}
+                    className="absolute inset-0 bg-gradient-to-t from-dark-300/95 via-dark-300/60 to-transparent flex flex-col justify-end p-5"
+                  >
+                    <motion.p
+                      variants={{ cardHover: { y: 0, opacity: 1 } }}
+                      initial={{ y: 16, opacity: 0 }}
+                      transition={{ duration: 0.35, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
+                      className="text-beige-100/85 text-xs leading-relaxed"
+                    >
+                      {member.bio}
+                    </motion.p>
+                  </motion.div>
               </div>
               )}
 
@@ -117,7 +134,12 @@ export function Team() {
                 {member.role && (
                   <p className="label-text text-[10px] text-brown-400 mb-3">{member.role}</p>
                 )}
-                <p className="text-dark-200/60 text-sm leading-relaxed mb-4">{member.bio}</p>
+                {!member.photo && (
+                  <p className="text-dark-200/60 text-sm leading-relaxed mb-4">{member.bio}</p>
+                )}
+                {member.photo && (
+                  <p className="md:hidden text-dark-200/60 text-sm leading-relaxed">{member.bio}</p>
+                )}
               </div>
             </motion.div>
           ))}

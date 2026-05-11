@@ -1,8 +1,47 @@
 import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
 import { Link } from 'react-scroll'
 import { ArrowDown } from 'lucide-react'
 import heroImg from '@/assets/residential/elevation/3d_render/Designer.png'
+
+function MagneticLink({
+  to,
+  children,
+  className,
+}: {
+  to: string
+  children: React.ReactNode
+  className: string
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+  const springX = useSpring(x, { damping: 20, stiffness: 200 })
+  const springY = useSpring(y, { damping: 20, stiffness: 200 })
+
+  const handleMove = (e: React.MouseEvent) => {
+    if (!ref.current) return
+    const r = ref.current.getBoundingClientRect()
+    x.set((e.clientX - (r.left + r.width  / 2)) * 0.32)
+    y.set((e.clientY - (r.top  + r.height / 2)) * 0.32)
+  }
+
+  const handleLeave = () => { x.set(0); y.set(0) }
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ x: springX, y: springY }}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      className="inline-block"
+    >
+      <Link to={to} smooth duration={800} offset={-80} className={className}>
+        {children}
+      </Link>
+    </motion.div>
+  )
+}
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -123,24 +162,18 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 1.3 }}
           className="flex flex-wrap items-center gap-4 mt-10"
         >
-          <Link
+          <MagneticLink
             to="portfolio"
-            smooth
-            duration={800}
-            offset={-80}
-            className="px-7 py-3.5 bg-brown-400 hover:bg-brown-500 text-cream-100 label-text rounded-sm transition-all duration-300 hover:scale-[1.02]"
+            className="px-7 py-3.5 bg-brown-400 hover:bg-brown-500 text-cream-100 label-text rounded-sm transition-all duration-300"
           >
             View Our Work
-          </Link>
-          <Link
+          </MagneticLink>
+          <MagneticLink
             to="contact"
-            smooth
-            duration={800}
-            offset={-80}
             className="px-7 py-3.5 border border-cream-200/40 hover:border-beige-200 text-cream-200 label-text rounded-sm transition-all duration-300 hover:bg-white/5"
           >
             Contact Us
-          </Link>
+          </MagneticLink>
         </motion.div>
 
         {/* Scroll indicator */}
