@@ -12,19 +12,42 @@ const contactInfo = [
 export function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '', service: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const subject = encodeURIComponent(`Project Enquiry from ${form.name}`)
-    const body    = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nService: ${form.service}\n\nMessage:\n${form.message}`
-    )
-    window.location.href = `mailto:connect@archsphere.co.in?subject=${subject}&body=${body}`
-    setSubmitted(true)
+    setLoading(true)
+    setError('')
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: 'b1bd1741-bd45-491d-8874-348d959dd444',
+          subject: `Project Enquiry from ${form.name}`,
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          service: form.service,
+          message: form.message,
+        }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setSubmitted(true)
+      } else {
+        setError('Something went wrong. Please try again or email us directly.')
+      }
+    } catch {
+      setError('Network error. Please check your connection and try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -160,15 +183,19 @@ export function Contact() {
                     className="w-full px-4 py-3 bg-cream-100 border border-beige-200 rounded-sm text-dark-300 text-sm placeholder-beige-300 focus:outline-none focus:border-brown-400 transition-colors resize-none"
                   />
                 </div>
+                {error && (
+                  <p className="text-red-500 text-xs">{error}</p>
+                )}
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.97 }}
+                  disabled={loading}
+                  whileHover={{ scale: loading ? 1 : 1.02 }}
+                  whileTap={{ scale: loading ? 1 : 0.97 }}
                   transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                  className="w-full md:w-auto px-10 py-3.5 bg-brown-400 hover:bg-brown-500 text-cream-100 label-text rounded-sm transition-colors duration-300 flex items-center justify-center gap-2"
+                  className="w-full md:w-auto px-10 py-3.5 bg-brown-400 hover:bg-brown-500 disabled:opacity-60 disabled:cursor-not-allowed text-cream-100 label-text rounded-sm transition-colors duration-300 flex items-center justify-center gap-2"
                 >
-                  Send Message
-                  <Send size={13} />
+                  {loading ? 'Sending…' : 'Send Message'}
+                  {!loading && <Send size={13} />}
                 </motion.button>
               </form>
             )}
