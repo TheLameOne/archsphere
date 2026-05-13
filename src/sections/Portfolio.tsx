@@ -67,9 +67,9 @@ export function Portfolio() {
             <h2 className="heading-lg text-dark-300">
               Our <span className="italic text-brown-400">Portfolio</span>
             </h2>
-            <p className="text-dark-200/50 text-sm max-w-xs leading-relaxed">
+            {/* <p className="text-dark-200/50 text-sm max-w-xs leading-relaxed">
               {projects.length} projects across residential architecture, interior and 3D visualization.
-            </p>
+            </p> */}
           </div>
         </motion.div>
 
@@ -150,14 +150,14 @@ export function Portfolio() {
                   >
                     {p.category}
                   </motion.p>
-                  <motion.h3
+                  {/* <motion.h3
                     variants={{ hover: { opacity: 1, y: 0 } }}
                     initial={{ opacity: 0, y: 14 }}
                     transition={{ duration: 0.35, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
                     className="font-serif text-base text-cream-100 mt-0.5"
                   >
                     {p.title}
-                  </motion.h3>
+                  </motion.h3> */}
                 </div>
               </motion.div>
             ))}
