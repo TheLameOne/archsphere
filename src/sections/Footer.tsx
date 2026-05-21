@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-scroll'
-import { Instagram, Linkedin, Twitter, Logo } from '@/components/SocialIcons'
+import {Logo } from '@/components/SocialIcons'
+// import { Instagram, Linkedin, Twitter, Logo } from '@/components/SocialIcons'
 
 const footerLinks = {
   'Studio': ['About Us', 'Our Process', 'Team', 'Careers'],
