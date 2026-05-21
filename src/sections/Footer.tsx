@@ -73,7 +73,7 @@ export function Footer() {
               A premier architecture & interior design studio crafting spaces
               that inspire, endure, and transcend expectation.
             </p>
-            <div className="flex gap-3">
+            {/* <div className="flex gap-3">
               {[Instagram, Linkedin, Twitter].map((Icon, i) => (
                 <motion.a
                   key={i}
@@ -85,7 +85,7 @@ export function Footer() {
                   <Icon size={14} />
                 </motion.a>
               ))}
-            </div>
+            </div> */}
           </div>
 
           {/* Link columns */}
