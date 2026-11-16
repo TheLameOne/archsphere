@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-scroll'
 import {Logo } from '@/components/SocialIcons'
+import { StreetElevation } from '@/components/StreetElevation'
 // import { Instagram, Linkedin, Twitter, Logo } from '@/components/SocialIcons'
 
 const footerLinks = {
@@ -30,7 +31,7 @@ export function Footer() {
     <footer className="bg-dark-400 text-cream-200">
 
       {/* CTA Band */}
-      <div className="bg-brown-500 py-14 px-6 text-center">
+      <div className="bg-brown-500 pt-14 px-6 text-center overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -59,6 +60,20 @@ export function Footer() {
             </Link>
           </motion.div>
         </motion.div>
+
+        {/* Elevation that builds itself over ~12s: a tall single house on
+            phones, the full street from tablets up (centred on the main house
+            and full width from desktop). Only the visible one animates. */}
+        <div className="mt-12 -mx-6">
+          <StreetElevation
+            layout="tall"
+            className="md:hidden block w-full max-w-[440px] mx-auto h-auto text-cream-100/45"
+          />
+          <StreetElevation
+            layout="wide"
+            className="hidden md:block h-auto max-w-none md:w-[140%] md:-ml-[20%] lg:w-full lg:ml-0 text-cream-100/45"
+          />
+        </div>
       </div>
 
       {/* Main Footer */}

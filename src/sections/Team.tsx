@@ -5,34 +5,27 @@ import { staggerContainer, staggerItem } from '@/components/SectionWrapper'
 // import teamPhoto3 from '@/assets/team/image3.jpeg'
 
 import teamPhoto1 from '@/assets/team/image12.png'
-import teamPhoto2 from '@/assets/team/image22.jpeg'
 import teamPhoto3 from '@/assets/team/image32.png'
 
-const team: Array<{ name: string; role: string; bio: string; photo?: string; initials: string; color: string }> = [
+type Leader = { name: string; role: string; bio: string; photo: string }
+type Member = { name: string; role: string; bio: string; initials: string; color: string }
+
+const leaders: Leader[] = [
   {
     name: 'Himanshu K Prajapati',
     role: 'PROJECT HEAD',
     bio: 'As the Project head, I am managing the project lifecycle end-to-end, business development, facilitate client meetings to align scope and milestones, coordinate the project team to resolve dependencies, and ensure all deliverables are produced to agreed quality standards and timelines.',
     photo: teamPhoto1,
-    initials: 'HKP',
-    color: 'bg-brown-400',
-  },
-  {
-    name: 'Raksha Sharma',
-    role: 'DESIGN STRATEGY HEAD',
-    bio: "As Principal Architect and Design Head, I curate the project's holistic design framework, leads coordination across disciplines, oversee the review and convergence of all drawings, and guides the team to ensure cohesive, compliant, and timely design.",
-    photo: teamPhoto2,
-    initials: 'RS',
-    color: 'bg-olive-300',
   },
   {
     name: 'Divya Verma',
     role: 'OPERATIONS HEAD',
     bio: 'Focusing on overall internal operations and business development, finance management, while coordinating and managing internal teams to ensure seamless execution of the project.',
     photo: teamPhoto3,
-    initials: 'DV',
-    color: 'bg-brown-500',
   },
+]
+
+const members: Member[] = [
   {
     name: 'Hardik Mori',
     role: 'BILLING ENGINEER',
@@ -59,7 +52,7 @@ const team: Array<{ name: string; role: string; bio: string; photo?: string; ini
     role: 'ARCHITECT',
     bio: 'Develops design concepts, prepares and refines architectural drawings, executes technical detailing, and coordinates with consultants to maintain clarity, precision, and consistency across all project documents.',
     initials: 'AP',
-    color: 'bg-brown-400',
+    color: 'bg-olive-400',
   },
 ]
 
@@ -85,65 +78,69 @@ export function Team() {
           </h2>
         </motion.div>
 
-        {/* Cards */}
+        {/* Leadership */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid lg:grid-cols-2 gap-6"
         >
-          {team.map((member) => (
-            <motion.div
-              key={member.name}
+          {leaders.map((leader) => (
+            <motion.article
+              key={leader.name}
               variants={staggerItem}
-              whileHover="cardHover"
-              className="group bg-cream-100 rounded-sm border border-beige-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-400"
+              className="group flex flex-col sm:flex-row bg-cream-100 border border-beige-100 rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-500"
             >
-              {/* Avatar */}
-              {member.photo && (
-              <div className="h-80 overflow-hidden bg-beige-200 relative">
-                  <img
-                    src={member.photo}
-                    alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    style={{ objectPosition: 'center 10%' }}
-                  />
-                  {/* Bio hover overlay */}
-                  <motion.div
-                    variants={{ cardHover: { opacity: 1 } }}
-                    initial={{ opacity: 0 }}
-                    transition={{ duration: 0.35 }}
-                    className="absolute inset-0 bg-gradient-to-t from-dark-300/95 via-dark-300/60 to-transparent flex flex-col justify-end p-5"
-                  >
-                    <motion.p
-                      variants={{ cardHover: { y: 0, opacity: 1 } }}
-                      initial={{ y: 16, opacity: 0 }}
-                      transition={{ duration: 0.35, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
-                      className="text-beige-100/85 text-xs leading-relaxed"
-                    >
-                      {member.bio}
-                    </motion.p>
-                  </motion.div>
+              <div className="relative h-80 sm:h-auto sm:min-h-[340px] sm:w-[42%] shrink-0 overflow-hidden bg-beige-200">
+                <img
+                  src={leader.photo}
+                  alt={leader.name}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  style={{ objectPosition: 'center 15%' }}
+                />
               </div>
-              )}
 
-              {/* Info */}
-              <div className="p-6">
-                <h3 className="font-serif text-xl text-dark-300 mb-0.5">{member.name}</h3>
-                {member.role && (
-                  <p className="label-text text-[10px] text-brown-400 mb-3">{member.role}</p>
-                )}
-                {!member.photo && (
-                  <p className="text-dark-200/60 text-sm leading-relaxed mb-4">{member.bio}</p>
-                )}
-                {member.photo && (
-                  <p className="md:hidden text-dark-200/60 text-sm leading-relaxed">{member.bio}</p>
-                )}
+              <div className="flex flex-col p-7 lg:p-8">
+                <p className="label-text text-[10px] text-brown-400">{leader.role}</p>
+                <h3 className="font-serif text-2xl lg:text-[1.65rem] text-dark-300 mt-2 leading-snug">
+                  {leader.name}
+                </h3>
+                <div className="w-10 h-px bg-brown-400/40 my-5 transition-all duration-500 group-hover:w-16 group-hover:bg-brown-400" />
+                <p className="text-dark-200/65 text-sm leading-relaxed">{leader.bio}</p>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </motion.div>
+
+        {/* Core team */}
+        <div className="mt-6">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-beige-100 border border-beige-100 rounded-sm overflow-hidden"
+          >
+            {members.map((member) => (
+              <motion.article
+                key={member.name}
+                variants={staggerItem}
+                className="group bg-cream-100 p-7 hover:bg-cream-50 transition-colors duration-500"
+              >
+                <span
+                  className={`${member.color} w-12 h-12 rounded-full flex items-center justify-center font-serif text-sm tracking-wide text-cream-100 transition-transform duration-500 group-hover:scale-110`}
+                  aria-hidden="true"
+                >
+                  {member.initials}
+                </span>
+                <h3 className="font-serif text-xl text-dark-300 mt-6 leading-snug">{member.name}</h3>
+                <p className="label-text text-[10px] text-brown-400 mt-1.5">{member.role}</p>
+                <p className="text-dark-200/60 text-sm leading-relaxed mt-4">{member.bio}</p>
+              </motion.article>
+            ))}
+          </motion.div>
+        </div>
 
       </div>
     </section>

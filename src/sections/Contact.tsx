@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send } from 'lucide-react'
 import { SectionWrapper } from '@/components/SectionWrapper'
+import { SpiritLevel } from '@/components/Drafting'
 
 const contactInfo = [
   { icon: Mail,    label: 'Email',    value: 'connect@archsphere.co.in' },
@@ -95,6 +96,8 @@ export function Contact() {
                 </div>
               ))}
             </div>
+
+            <SpiritLevel className="mt-12 text-brown-400/50" />
           </motion.div>
 
           {/* Form */}

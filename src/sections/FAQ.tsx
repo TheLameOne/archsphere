@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plus, Minus } from 'lucide-react'
 import { staggerContainer, staggerItem } from '@/components/SectionWrapper'
+import { PlanDrawing } from '@/components/Drafting'
 
 const faqs = [
   {
@@ -55,6 +56,7 @@ export function FAQ() {
               Have more questions? We're happy to talk through your project in a free
               30-minute consultation.
             </p>
+            <PlanDrawing className="hidden md:block mt-14 w-full max-w-[240px] text-brown-400/45" />
           </motion.div>
 
           {/* Accordion */}
