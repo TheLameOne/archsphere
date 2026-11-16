@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ZoomIn } from 'lucide-react'
+import { X } from 'lucide-react'
+import { CropMarks } from '@/components/Drafting'
 import img1  from '@/assets/residential/elevation/3d_render/Designer (1).png'
 import img2  from '@/assets/residential/interior/07c67703-39a2-4450-a4ef-d03abef16fb2.png'
 import img3  from '@/assets/residential/elevation/3d_render/Designer (2).png'
@@ -130,18 +131,11 @@ export function Portfolio() {
                   className="absolute inset-0 bg-gradient-to-t from-dark-300/90 via-dark-300/20 to-transparent"
                 />
 
-                {/* Zoom icon */}
-                <motion.div
-                  variants={{ hover: { opacity: 1, y: 0 } }}
-                  initial={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream-100/20 backdrop-blur-sm flex items-center justify-center"
-                >
-                  <ZoomIn size={14} className="text-cream-100" />
-                </motion.div>
+                {/* Crop marks close in on hover */}
+                <CropMarks className="border-cream-100/90 drop-shadow-[0_1px_1px_rgba(0,0,0,0.35)]" />
 
                 {/* Text overlay */}
-                <div className="absolute bottom-0 inset-x-0 p-5">
+                <div className="absolute bottom-0 inset-x-0 p-7">
                   <motion.p
                     variants={{ hover: { opacity: 1, y: 0 } }}
                     initial={{ opacity: 0, y: 10 }}

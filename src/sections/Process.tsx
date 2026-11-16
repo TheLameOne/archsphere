@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { staggerContainer, staggerItem } from '@/components/SectionWrapper'
+import { DatumMarker } from '@/components/Drafting'
 // import designImg  from '@/assets/residential/elevation/sketchup/1777196207170.png'
 import developImg from '@/assets/residential/elevation/sketchup/SAVE_20260205_093545.jpg'
 
@@ -89,8 +90,10 @@ export function Process() {
                     : 'md:flex-row-reverse md:pl-[calc(50%+2rem)]'
                 }`}
               >
-                {/* Dot */}
-                <div className="absolute left-[22px] md:left-1/2 md:-translate-x-1/2 top-0 w-[14px] h-[14px] rounded-full bg-brown-400 border-2 border-cream-100 z-10" />
+                {/* Level marker */}
+                <div className="absolute left-[19px] md:left-1/2 md:-translate-x-1/2 top-0 w-5 h-5 z-10">
+                  <DatumMarker className="block w-full h-full text-brown-400" />
+                </div>
 
                 {/* Card */}
                 <div className="ml-14 md:ml-0 flex-1 group p-7 rounded-sm border border-beige-100 bg-cream-200/60 hover:bg-cream-200 hover:border-beige-200 hover:shadow-md transition-all duration-400">

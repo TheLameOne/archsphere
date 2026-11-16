@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { slideInLeft, slideInRight } from '@/components/SectionWrapper'
+import { DimensionLine } from '@/components/Drafting'
 import aboutImg from '@/assets/residential/elevation/3d_render/433b3a93-5d21-4a71-a0f7-ccadb6c8b0ac(1).png'
 
 export function About() {
@@ -9,7 +10,8 @@ export function About() {
     target: sectionRef,
     offset: ['start end', 'end start'],
   })
-  const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '-10%'])
+  // scale 1.1 gives 5% of bleed on each edge, so keep the travel within ±5%
+  const imgY = useTransform(scrollYProgress, [0, 1], ['5%', '-5%'])
 
   return (
     <section id="about" ref={sectionRef} className="py-24 md:py-32 bg-cream-100 overflow-hidden">
@@ -28,12 +30,13 @@ export function About() {
               <motion.img
                 src={aboutImg}
                 alt="Archsphere design philosophy"
-                style={{ y: imgY }}
-                className="w-full h-full object-cover object-right scale-110"
+                style={{ y: imgY, scale: 1.1 }}
+                className="w-full h-full object-cover object-right"
               />
             </div>
-            {/* Decorative offset frame */}
-            <div className="absolute -bottom-6 -right-6 w-2/3 h-1/2 border border-beige-200 rounded-sm -z-10" />
+            {/* Dimension lines, as on an elevation drawing */}
+            <DimensionLine delay={0.5} className="absolute left-0 right-0 -bottom-9 text-brown-400/50" />
+            <DimensionLine vertical delay={0.7} className="hidden md:block absolute top-0 bottom-0 -left-9 text-brown-400/50" />
             {/* Year badge */}
             {/* <div className="absolute top-6 -right-4 md:-right-8 bg-brown-400 text-cream-100 px-4 py-5 text-center rounded-sm">
               <span className="font-serif text-2xl font-semibold block">12</span>

@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
 import { Link } from 'react-scroll'
 import { ArrowDown } from 'lucide-react'
+import { SheetStamp } from '@/components/Drafting'
 import heroImg from '@/assets/residential/elevation/3d_render/Designer.png'
 
 function MagneticLink({
@@ -190,6 +191,16 @@ export function Hero() {
           >
             <ArrowDown size={14} className="text-beige-200/50" />
           </motion.div>
+        </motion.div>
+
+        {/* Drawing-sheet stamp: north arrow, scale bar, studio coordinates */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.7, duration: 1 }}
+          className="hidden md:block absolute bottom-36 right-12 lg:right-20 xl:right-28 text-beige-200/75"
+        >
+          <SheetStamp settleDelay={1.9} />
         </motion.div>
       </motion.div>
 
